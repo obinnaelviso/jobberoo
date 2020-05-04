@@ -5,8 +5,6 @@
     @include('layout.navbar')
     <!-- END nav -->
 
-    @include('layout.header')
-
     @yield('content')
 
     @include('layout.footer')

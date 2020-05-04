@@ -23,7 +23,7 @@ class CreateJobsTable extends Migration
             $table->string('location');
             $table->foreignId('category_id')->constrained()->onDelete("cascade");
             $table->foreignId('type_id')->constrained()->onDelete("cascade");
-            $table->foreignId('employer_id')->constrained()->onDelete("cascade");
+            $table->foreignId('user_id')->constrained()->onDelete("cascade");
             $table->foreignId('status_id')->constrained();
             $table->timestamps();
         });

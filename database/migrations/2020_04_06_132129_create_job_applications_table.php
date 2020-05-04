@@ -19,6 +19,7 @@ class CreateJobApplicationsTable extends Migration
             $table->string('attachment')->nullable();
             $table->foreignId('status_id')->constrained();
             $table->foreignId('job_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
