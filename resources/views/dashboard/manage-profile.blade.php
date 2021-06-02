@@ -1,7 +1,8 @@
 @extends('layout.main')
 @section('title', 'Manage Profile - Jobberoo')
 @section('nav-title', 'Manage Profile')
-@section('dashboard-active', 'active')
+{{-- @section('dashboard-active', 'active') --}}
+@section('profile-active', 'active')
 @section('content')
 @include('layout.global-header')
 <div class="ftco-section bg-light">

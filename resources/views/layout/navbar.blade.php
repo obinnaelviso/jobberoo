@@ -20,6 +20,7 @@
                 Logout
             </a></li>
             <li class="nav-item @yield('dashboard-active')"><a href="{{ route('dashboard') }}" class="nav-link">Go to Dashboard</a></li>
+            <li class="nav-item @yield('profile-active')"><a href="{{ route('dashboard.manage.profile') }}" class="nav-link">{{ Auth::user()->firstname.' '.Auth::user()->lastname }}</a></li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
