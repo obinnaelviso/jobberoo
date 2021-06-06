@@ -49,7 +49,7 @@
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section text-center ftco-animate">
-                <h2 class="mb-4">Hot Jobs</h2>
+                <h2 class="mb-4">Top Companies</h2>
             </div>
         </div>
         <div class="row">
@@ -97,7 +97,7 @@
                       <span class="icon-search2 icon"></span>
                       <span class="subheading">Search Job</span>
                       <h2>Browse Job by Specialism</h2>
-                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                      <p>Here at {{ config('app.name') }} we make sure we give you te best jobs that fits your field of specialization so that we can pay you well and get your best output.</p>
                   </div>
               </div>
           </div>
