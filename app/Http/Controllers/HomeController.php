@@ -26,8 +26,8 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $open_status = Status::where('name', 'open')->first()->id;
-        $jobs = Job::where('status_id', $open_status)->latest()->paginate(15);
-        $companies = Job::where('status_id', $open_status)->inRandomOrder()->paginate(15);
+        $jobs = Job::where('status_id', $open_status)->where('user_id', 1)->latest()->paginate(15);
+        $companies = Job::where('status_id', $open_status)->where('user_id', 1)->inRandomOrder()->paginate(15);
         return view('index', compact('categories', 'jobs', 'open_status', 'companies'));
     }
 
