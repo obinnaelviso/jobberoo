@@ -46,28 +46,50 @@
   </section>
 
   <section class="ftco-section">
-      <div class="container">
-          <div class="row justify-content-center mb-5 pb-3">
-        <div class="col-md-7 heading-section text-center ftco-animate">
-            <span class="subheading">Job Categories</span>
-          <h2 class="mb-4">Top Categories</h2>
-        </div>
-      </div>
-    <div class="row">
-        @foreach($categories as $category)
-            <div class="col-md-3 ftco-animate">
-                <ul class="category">
-                    <li><a href="{{ route('jobs', $category->id) }}">{{ $category->title }}<br><span class="number">{{ $category->jobs->where('status_id', $open_status)->count() }}</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                </ul>
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2 class="mb-4">Hot Jobs</h2>
             </div>
-        @endforeach
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel-testimony owl-carousel ftco-owl">
+                    @foreach($companies as $job)
+                        <div class="card text-left">
+                            <div  style="height: 200px; overflow-y: hidden"><img class="img-fluid" src="{{ asset($job->public_url) }}" alt=""></div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $job->company }}<span class="float-right">{{ $job->category->jobs->count() }}</span></h5>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
-
-
-      </div>
   </section>
 
-  <section class="ftco-section img" style="background-image: url(images/bg_1.jpg); background-position: top center;">
+  <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <span class="subheading">Job Categories</span>
+                    <h2 class="mb-4">Top Categories</h2>
+                </div>
+            </div>
+            <div class="row">
+                @foreach($categories as $category)
+                    <div class="col-md-3 ftco-animate">
+                        <ul class="category">
+                            <li><a href="{{ route('jobs', $category->id) }}">{{ $category->title }}<br><span class="number">{{ $category->jobs->where('status_id', $open_status)->count() }}</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                        </ul>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+  </section>
+
+  <section class="ftco-section img" style="background-image: url(images/crypto_jobs_large.jpg); background-position: top center;">
       <div class="container">
           <div class="row">
               <div class="col-md-6">
@@ -110,10 +132,18 @@
                               </div>
 
                               <div class="one-forth ml-auto d-flex align-items-center">
-                                <a href="/jobs/categories" class="btn btn-primary py-2">Apply Job</a>
+                                <a href="#" data-toggle="modal" data-target="#view_{{ $job->id }}" class="btn btn-primary py-2">Apply Job</a>
                               </div>
                           </div>
                       </div>
+                      @include('dashboard.view-job-modal')
+                      @include('apply-job-modal')@if($errors->any())
+                         <script>
+                             window.onload = function() {
+
+                             $('#apply_{{ $job->id }}').modal('show');
+                             }
+                         </script>@endif
                   @endforeach
               </div>
 
@@ -262,67 +292,6 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="ftco-section ftco-candidates bg-primary">
-      <div class="container">
-          <div class="row justify-content-center pb-3">
-        <div class="col-md-10 heading-section heading-section-white text-center ftco-animate">
-            <span class="subheading">Candidates</span>
-          <h2 class="mb-4">Latest Candidates</h2>
-        </div>
-      </div>
-      </div>
-      <div class="container">
-      <div class="row">
-          <div class="col-md-12 ftco-animate">
-              <div class="carousel-candidates owl-carousel">
-                  <div class="item">
-                      <a href="#" class="team text-center">
-                          <div class="img" style="background-image: url(images/person_1.jpg);"></div>
-                          <h2>Danica Lewis</h2>
-                          <span class="position">Western City, UK</span>
-                      </a>
-                  </div>
-                  <div class="item">
-                      <a href="#" class="team text-center">
-                          <div class="img" style="background-image: url(images/person_2.jpg);"></div>
-                          <h2>Nicole Simon</h2>
-                          <span class="position">Western City, UK</span>
-                      </a>
-                  </div>
-                  <div class="item">
-                      <a href="#" class="team text-center">
-                          <div class="img" style="background-image: url(images/person_3.jpg);"></div>
-                          <h2>Cloe Meyer</h2>
-                          <span class="position">Western City, UK</span>
-                      </a>
-                  </div>
-                  <div class="item">
-                      <a href="#" class="team text-center">
-                          <div class="img" style="background-image: url(images/person_4.jpg);"></div>
-                          <h2>Rachel Clinton</h2>
-                          <span class="position">Western City, UK</span>
-                      </a>
-                  </div>
-                  <div class="item">
-                      <a href="#" class="team text-center">
-                          <div class="img" style="background-image: url(images/person_5.jpg);"></div>
-                          <h2>Dave Buff</h2>
-                          <span class="position">Western City, UK</span>
-                      </a>
-                  </div>
-                  <div class="item">
-                      <a href="#" class="team text-center">
-                          <div class="img" style="background-image: url(images/person_6.jpg);"></div>
-                          <h2>Dave Buff</h2>
-                          <span class="position">Western City, UK</span>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-      </div>
   </section>
 
   <section class="ftco-section bg-light">

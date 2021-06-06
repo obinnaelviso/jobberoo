@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Edit Job - Jobberoo')
+@section('title', 'Edit Job - '.config('app.name'))
 @section('nav-title', 'Edit Job')
 @section('dashboard-active', 'active')
 @section('content')
@@ -15,6 +15,20 @@
                 @csrf @method('put')
                 @include('layout.errors')
                 @include('layout.alerts')
+                @if ($job->img_url)
+                <div class="row form-group">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div><i class="font-weight-bold" for="logo">Current Image: </i></div>
+                        <img  src="{{ asset($job->public_url) }}" class="img-fluid" alt="{{ config('app.name') }} image">
+                    </div>
+                </div>
+                @endif
+                <div class="row form-group">
+                    <div class="col-md-12 mb-3 mb-md-0">
+                        <label class="font-weight-bold" for="logo">Upload Logo</label>
+                        <input type="file" class="form-control-file" name="picture" id="logo" required>
+                    </div>
+                </div>
                 <div class="row form-group">
                     <div class="col-md-12 mb-3 mb-md-0">
                         <label class="font-weight-bold" for="title">Job Title</label>
@@ -25,7 +39,7 @@
                 <div class="row form-group">
                     <div class="col-md-12 mb-3 mb-md-0">
                         <label class="font-weight-bold" for="description">Job Description</label>
-                        <textarea name="description"   class="form-control" id="description" cols="30" rows="5" required>{{ old('description') ?: $job->description }}</textarea>
+                        <textarea name="description"   class="form-control" id="description" cols="30" rows="5" required>{{ old('description',  $job->description) }}</textarea>
                     </div>
                 </div>
 

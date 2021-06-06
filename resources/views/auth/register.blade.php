@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Register - Joberoo')
+@section('title', 'Register - '.config('app.name'))
 @section('nav-title', 'Registeration')
 @section('register-active', 'active')
 @section('content')
@@ -7,7 +7,7 @@
 <section class="ftco-section">
     <div class="container">
       <div class="row d-flex">
-          <div class="col-md-6 offset-md-3 bg-success">
+          <div class="col-md-6 offset-md-3 bg-warning">
             <form action="{{ route('register') }}" method="POST" class="bg-white p-5">
                 @csrf
                 @include('layout.errors')

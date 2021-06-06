@@ -10015,3 +10015,14 @@ textarea.form-control {
 .s-switch-readonly, .s-switch-disabled{
 	opacity: 0.8;
 }
+.main-banner {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background-size: cover;
+    background-color: black;
+}
+.global-header-title {
+    color: white !important;
+    text-shadow: 2px 2px black;
+}

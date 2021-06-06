@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Post a Job - Jobberoo')
+@section('title', 'Post a Job - '.config('app.name'))
 @section('nav-title', 'Post a Job')
 @section('content')
 @include('layout.global-header')
@@ -8,10 +8,16 @@
       <div class="row">
 
         <div class="col-md-12 mb-5">
-            <form action="{{ route('jobs.post') }}" class="p-5 bg-white" method="POST">
+            <form action="{{ route('jobs.post') }}" class="p-5 bg-white" method="POST" enctype="multipart/form-data">
                 @csrf
                 @include('layout.errors')
                 @include('layout.alerts')
+                <div class="row form-group">
+                    <div class="col-md-12 mb-3 mb-md-0">
+                        <label class="font-weight-bold" for="logo">Upload Logo</label>
+                        <input type="file" class="form-control-file" name="picture" id="logo" required>
+                    </div>
+                </div>
                 <div class="row form-group">
                     <div class="col-md-12 mb-3 mb-md-0">
                         <label class="font-weight-bold" for="title">Job Title</label>
@@ -22,14 +28,14 @@
                 <div class="row form-group">
                     <div class="col-md-12 mb-3 mb-md-0">
                         <label class="font-weight-bold" for="description">Job Description</label>
-                        <textarea name="description" value="{{ old('description') }}"  class="form-control" id="description" cols="30" rows="5" required></textarea>
+                        <textarea name="description"  class="form-control" id="description" cols="30" rows="5" required>{{ old('description') }}</textarea>
                     </div>
                 </div>
 
                 <div class="row form-group mb-3">
                     <div class="col-md-8 mb-3 mb-md-0">
                         <label class="font-weight-bold" for="salary">Salary</label>
-                        <input type="text" id="salary" name="salary" value="{{ old('salary') }}" class="form-control" placeholder="eg. N10,000" required>
+                        <input type="text" id="salary" name="salary" value="{{ old('salary') }}" class="form-control" placeholder="eg. {{ config('app.currency') }}10000" required>
                     </div>
                     <div class="col-md-4 mb-md-0 mt-3">
                         <label for="is_negotiable">Negotiable

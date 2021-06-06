@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Contact - Jobberoo')
+@section('title', 'Contact - '.config('app.name'))
 @section('nav-title', 'We would love to hear from you')
 @section('content')
 @include('layout.global-header')

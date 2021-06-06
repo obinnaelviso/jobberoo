@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Dashboard - Jobberoo')
+@section('title', 'Dashboard - '.config('app.name'))
 @section('nav-title', 'Dashboard')
 @section('dashboard-active', 'active')
 @section('content')

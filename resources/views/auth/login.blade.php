@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Login - Jobberoo')
+@section('title', 'Login - '.config('app.name'))
 @section('nav-title', 'Login')
 @section('login-active', 'active')
 @section('content')

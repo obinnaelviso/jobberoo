@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', $job->title.' Job Applications - Jobberoo')
+@section('title', $job->title.' Job Applications - '.config('app.name'))
 @section('nav-title', $job->title.' Job Applications')
 @section('dashboard-active', 'active')
 @section('content')

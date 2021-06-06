@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', $category->title.' Jobs - Jobberoo')
+@section('title', $category->title.' Jobs - '.config('app.name'))
 @section('nav-title', $category->title.' Jobs')
 @section('content')
 @include('layout.global-header')

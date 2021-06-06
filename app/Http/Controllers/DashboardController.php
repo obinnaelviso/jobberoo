@@ -10,6 +10,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -70,9 +71,17 @@ class DashboardController extends Controller
             'location' => 'required',
             'category_id' => 'required',
             'type_id' => 'required',
+            'picture' => 'required|file|image|max:5120',
         ]);
         $is_negotiable = $request->is_negotiable ? 1 : 0;
-        $this->user()->jobs()->create($request->all() + ['is_negotiable' => $is_negotiable, 'status_id' => Status::where('name', 'open')->first()->id]);
+        
+        if ($request->hasFile('picture')) {
+            $uploadedFile = $request->file('picture');
+            $fileName = $uploadedFile->getClientOriginalName();
+            $parent = 'public/jobs/'.$this->folderUid();
+            $storageURL = Storage::putFileAs($parent, $uploadedFile, $fileName);
+        }
+        $this->user()->jobs()->create($request->all() + ['is_negotiable' => $is_negotiable, 'img_url' => $storageURL, 'status_id' => Status::where('name', 'open')->first()->id]);
         return back()->with('success', "Job Posted Successfully! You'll start receiving job applications from workers soon!");
     }
 
@@ -112,9 +121,17 @@ class DashboardController extends Controller
             'location' => 'required',
             'category_id' => 'required',
             'type_id' => 'required',
+            'picture' => 'nullable|file|image|max:5120',
         ]);
+        $storageURL = $job->img_url;
+        if ($request->hasFile('picture')) {
+            $uploadedFile = $request->file('picture');
+            $fileName = $uploadedFile->getClientOriginalName();
+            $parent = 'public/jobs/'.$this->folderUid();
+            $storageURL = Storage::putFileAs($parent, $uploadedFile, $fileName);
+        }
         $is_negotiable = $request->is_negotiable ? 1 : 0;
-        $job->update($request->all() + ['is_negotiable' => $is_negotiable]);
+        $job->update($request->all() + ['is_negotiable' => $is_negotiable, 'img_url' => $storageURL]);
         return back()->with('success', "Job Updated Successfully!");
     }
 
@@ -165,6 +182,17 @@ class DashboardController extends Controller
         $application->save();
 
         return back()->with('success', 'Job application '.$status->name.' successfully!');
+    }
+
+    public function folderUid() {
+        $s = md5(uniqid(rand(),true));
+        $guidText =
+            substr($s,0,8) . '-' .
+            substr($s,8,4) . '-' .
+            substr($s,12,4). '-' .
+            substr($s,16,4). '-' .
+            substr($s,20);
+        return $guidText;
     }
 
     public function user() {

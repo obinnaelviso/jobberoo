@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
-    protected $fillable = ['title', 'description', 'salary', 'is_negotiable', 'company', 'location', 'category_id', 'type_id', 'status_id'];
+    protected $fillable = ['title', 'description', 'salary', 'img_url', 'is_negotiable', 'company', 'location', 'category_id', 'type_id', 'status_id'];
 
     public function category() {
         return $this->belongsTo(Category::class);
@@ -22,6 +22,10 @@ class Job extends Model
 
     public function status() {
         return $this->belongsTo(Status::class);
+    }
+
+    public function getPublicUrlAttribute() {
+        return str_replace('public', 'storage', $this->attributes['img_url']);
     }
 
 }

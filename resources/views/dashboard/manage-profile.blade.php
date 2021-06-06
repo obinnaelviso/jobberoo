@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Manage Profile - Jobberoo')
+@section('title', 'Manage Profile - '.config('app.name'))
 @section('nav-title', 'Manage Profile')
 {{-- @section('dashboard-active', 'active') --}}
 @section('profile-active', 'active')
