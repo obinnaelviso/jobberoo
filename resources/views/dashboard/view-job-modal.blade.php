@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-6 mb-3 mb-0">
                     <h6><b>Salary</b></h6>
-                    <p>N{{ $job->salary }}</p>
+                    <p>{{ config('app.currency').$job->salary }}</p>
                 </div>
                 <div class="col-6 mb-3 mb-0">
                     <h6><b>Is Negotiable?</b></h6>

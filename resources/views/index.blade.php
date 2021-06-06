@@ -128,6 +128,7 @@
                                   <div class="job-post-item-body d-block d-md-flex">
                                       <div class="mr-3"><span class="icon-layers"></span> <a href="#">{{ $job->company }}</a></div>
                                       <div><span class="icon-my_location"></span> <span>{{ $job->location }}</span></div>
+                                      <div class="text-danger"><span class="icon-account_balance_wallet ml-2"></span> <span>{{ config('app.currency').$job->salary }}</span></div>
                                   </div>
                               </div>
 
